@@ -1,0 +1,10 @@
+{
+  "resourceName": "snapl",
+  "tableName": "profile",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

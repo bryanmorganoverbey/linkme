@@ -210,7 +210,7 @@ export default function MiniDrawer() {
             {open ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Link Me
+            Snapl.me
           </Typography>
         </Toolbar>
       </AppBar>
