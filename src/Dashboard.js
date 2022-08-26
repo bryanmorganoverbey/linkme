@@ -1,11 +1,9 @@
 import React from "react";
 import Amplify from "aws-amplify";
-//2.
+import "@aws-amplify/ui-react/styles.css";
 import awsExports from "./aws-exports";
-//3.
 import { withAuthenticator, Authenticator } from "@aws-amplify/ui-react";
 
-//4.
 Amplify.configure(awsExports);
 
 function Dashboard() {
