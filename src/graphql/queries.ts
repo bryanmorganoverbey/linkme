@@ -7,7 +7,7 @@ export const getProfile = /* GraphQL */ `
     getProfile(username: $username) {
       username
       address
-      links
+      link
       createdAt
       updatedAt
     }
@@ -31,7 +31,7 @@ export const listProfiles = /* GraphQL */ `
       items {
         username
         address
-        links
+        link
         createdAt
         updatedAt
       }

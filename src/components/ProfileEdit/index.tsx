@@ -1,15 +1,26 @@
 import * as React from "react";
 import { API } from "aws-amplify";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { Box } from "@mui/material";
-import { createProfile as createProfileMutation } from "../../graphql/mutations";
+import { Box, Card, Grid, TextField } from "@mui/material";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import {
+  createProfile as createProfileMutation,
+  deleteProfile as deleteProfileMutation,
+} from "../../graphql/mutations";
 import { getProfile } from "../../graphql/queries";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import useEffectAsync from "../../hooks/useEffectAsync";
 
 const ProfileEdit = () => {
-  const [profile, setProfile] = React.useState(null);
+  const [profile, setProfile] = React.useState<ValuesD | null>(null);
   const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const navigate = useNavigate();
+
+  const params = { username: user?.username || "" };
 
   useEffectAsync(async () => {
     if (user.username && !profile) {
@@ -25,70 +36,95 @@ const ProfileEdit = () => {
   }, [user, profile]);
 
   const handleSubmit = async (values: ValuesD) => {
-    const payload = {
-      address: values.address,
-      username: values.username,
-      links: [values.link1, values.link2, values.link3],
-    };
-    console.log(values?.address);
     await API.graphql({
       query: createProfileMutation,
-      variables: { input: payload },
+      variables: { input: values },
+    });
+  };
+
+  const handleDelete = async () => {
+    await API.graphql({
+      query: deleteProfileMutation,
+      variables: { input: { username: user.username } },
     });
   };
 
   type ValuesD = {
     address: string;
     username: string;
-    link1: string;
-    link2: string;
-    link3: string;
+    link: string;
   };
 
   return (
-    <main>
+    <>
       <h1>Edit Your Profile {user?.username}</h1>
-      <Formik
-        initialValues={{
-          address: profile?.address || "",
-          link1: profile?.links?.link1 || "",
-          link2: "",
-          link3: "",
-          username: user?.username || "",
-        }}
-        onSubmit={handleSubmit}
-      >
-        {({ values }) => (
-          <Form>
-            <>
-              <Box>
-                <label>Address:</label>
-                <Field name="address" />
-              </Box>
-              <Box>
-                <label>Link1:</label>
-                <Field name={`link1`}></Field>
-              </Box>
-              <Box>
-                <label>Link2:</label>
-                <Field name={`link2`}></Field>
-              </Box>
-              <Box>
-                <label>Link3:</label>
-                <Field name={`link3`}></Field>
-              </Box>
-              <button type="submit">Save Profile</button>
-            </>
-          </Form>
-        )}
-      </Formik>
-
       <button type="button" onClick={signOut}>
         Sign out
       </button>
-
-      {/* <div>{profile}</div> */}
-    </main>
+      <button
+        type="button"
+        onClick={() =>
+          navigate({
+            pathname: "/profile",
+            search: `?${createSearchParams(params)}`,
+          })
+        }
+      >
+        View Profile
+      </button>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "50vh" }}
+      >
+        <Grid item xs={3}>
+          <Card sx={{ p: 5 }}>
+            <Formik
+              initialValues={{
+                address: profile?.address || "",
+                link: profile?.link || "",
+                username: user?.username || "",
+              }}
+              onSubmit={handleSubmit}
+            >
+              {({ values }) => (
+                <Form>
+                  <>
+                    <Box sx={{ p: 3 }}>
+                      <TextField
+                        name="address"
+                        id="outlined-basic"
+                        label="Address"
+                        variant="outlined"
+                      />
+                    </Box>
+                    <Box sx={{ p: 3 }}>
+                      <TextField
+                        name="link"
+                        id="outlined-basic"
+                        label="Link"
+                        variant="outlined"
+                      />
+                    </Box>
+                    <Box sx={{ p: 3 }}>
+                      <Button variant="outlined" onClick={handleDelete}>
+                        Delete
+                      </Button>{" "}
+                      <Button type="submit" variant="contained">
+                        Save Profile
+                      </Button>
+                    </Box>
+                  </>
+                </Form>
+              )}
+            </Formik>
+          </Card>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
