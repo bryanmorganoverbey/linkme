@@ -3,11 +3,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const getProfile = /* GraphQL */ `
-  query GetProfile($id: ID!) {
-    getProfile(id: $id) {
-      id
+  query GetProfile($username: String!) {
+    getProfile(username: $username) {
+      username
       address
-      userid
+      links
       createdAt
       updatedAt
     }
@@ -15,15 +15,23 @@ export const getProfile = /* GraphQL */ `
 `;
 export const listProfiles = /* GraphQL */ `
   query ListProfiles(
+    $username: String
     $filter: ModelProfileFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProfiles(
+      username: $username
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
-        id
+        username
         address
-        userid
+        links
         createdAt
         updatedAt
       }

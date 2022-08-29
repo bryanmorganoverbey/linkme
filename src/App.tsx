@@ -2,25 +2,24 @@ import React from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import SignupPage from "./components/SignupPage";
+import ProfileEdit from "./components/ProfileEdit";
+import { Authenticator } from "@aws-amplify/ui-react";
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Link to="/">Main</Link> | <Link to="/login">Login</Link> |{" "}
-          <Link to="/home">Home</Link> */}
-          {/* <Route path="/login" element={<Login />} /> */}
-          {/* <Route path="/nav" element={} /> */}
-          {/* <Route
-            path="/home"
+          <Route path="/" element={<SignupPage />} />
+          <Route
+            path="/profile-edit"
             element={
-              // <PrivateRoute>
-              // <Main />
-              // </PrivateRoute>
+              <Authenticator>
+                <ProfileEdit />
+              </Authenticator>
             }
-          /> */}
+          />
         </Routes>
       </Router>
     </div>

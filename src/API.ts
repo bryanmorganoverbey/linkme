@@ -3,14 +3,14 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateProfileInput = {
-  id?: string | null,
-  address: string,
-  userid?: string | null,
+  username: string,
+  address?: string | null,
+  links?: string | null,
 };
 
 export type ModelProfileConditionInput = {
   address?: ModelStringInput | null,
-  userid?: ModelStringInput | null,
+  links?: ModelStringInput | null,
   and?: Array< ModelProfileConditionInput | null > | null,
   or?: Array< ModelProfileConditionInput | null > | null,
   not?: ModelProfileConditionInput | null,
@@ -58,47 +58,40 @@ export type ModelSizeInput = {
 
 export type Profile = {
   __typename: "Profile",
-  id: string,
-  address: string,
-  userid?: string | null,
+  username: string,
+  address?: string | null,
+  links?: string | null,
   createdAt: string,
   updatedAt: string,
 };
 
+export type ProfileResponse = {
+  data?: { getProfile: Profile}
+}
 export type UpdateProfileInput = {
-  id: string,
+  username: string,
   address?: string | null,
-  userid?: string | null,
+  links?: string | null,
 };
 
 export type DeleteProfileInput = {
-  id: string,
+  username: string,
 };
 
 export type ModelProfileFilterInput = {
-  id?: ModelIDInput | null,
+  username?: ModelStringInput | null,
   address?: ModelStringInput | null,
-  userid?: ModelStringInput | null,
+  links?: ModelStringInput | null,
   and?: Array< ModelProfileFilterInput | null > | null,
   or?: Array< ModelProfileFilterInput | null > | null,
   not?: ModelProfileFilterInput | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 
 export type ModelProfileConnection = {
   __typename: "ModelProfileConnection",
@@ -107,26 +100,11 @@ export type ModelProfileConnection = {
 };
 
 export type ModelSubscriptionProfileFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
+  username?: ModelSubscriptionStringInput | null,
   address?: ModelSubscriptionStringInput | null,
-  userid?: ModelSubscriptionStringInput | null,
+  links?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionProfileFilterInput | null > | null,
   or?: Array< ModelSubscriptionProfileFilterInput | null > | null,
-};
-
-export type ModelSubscriptionIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
 };
 
 export type ModelSubscriptionStringInput = {
@@ -152,9 +130,9 @@ export type CreateProfileMutationVariables = {
 export type CreateProfileMutation = {
   createProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -168,9 +146,9 @@ export type UpdateProfileMutationVariables = {
 export type UpdateProfileMutation = {
   updateProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -184,33 +162,35 @@ export type DeleteProfileMutationVariables = {
 export type DeleteProfileMutation = {
   deleteProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
 export type GetProfileQueryVariables = {
-  id: string,
+  username: string,
 };
 
 export type GetProfileQuery = {
   getProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
 export type ListProfilesQueryVariables = {
+  username?: string | null,
   filter?: ModelProfileFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListProfilesQuery = {
@@ -218,9 +198,9 @@ export type ListProfilesQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
-      id: string,
-      address: string,
-      userid?: string | null,
+      username: string,
+      address?: string | null,
+      links?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -235,9 +215,9 @@ export type OnCreateProfileSubscriptionVariables = {
 export type OnCreateProfileSubscription = {
   onCreateProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -250,9 +230,9 @@ export type OnUpdateProfileSubscriptionVariables = {
 export type OnUpdateProfileSubscription = {
   onUpdateProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -265,9 +245,9 @@ export type OnDeleteProfileSubscriptionVariables = {
 export type OnDeleteProfileSubscription = {
   onDeleteProfile?:  {
     __typename: "Profile",
-    id: string,
-    address: string,
-    userid?: string | null,
+    username: string,
+    address?: string | null,
+    links?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,

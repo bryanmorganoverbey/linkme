@@ -5,9 +5,9 @@
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
     onCreateProfile(filter: $filter) {
-      id
+      username
       address
-      userid
+      links
       createdAt
       updatedAt
     }
@@ -16,9 +16,9 @@ export const onCreateProfile = /* GraphQL */ `
 export const onUpdateProfile = /* GraphQL */ `
   subscription OnUpdateProfile($filter: ModelSubscriptionProfileFilterInput) {
     onUpdateProfile(filter: $filter) {
-      id
+      username
       address
-      userid
+      links
       createdAt
       updatedAt
     }
@@ -27,9 +27,9 @@ export const onUpdateProfile = /* GraphQL */ `
 export const onDeleteProfile = /* GraphQL */ `
   subscription OnDeleteProfile($filter: ModelSubscriptionProfileFilterInput) {
     onDeleteProfile(filter: $filter) {
-      id
+      username
       address
-      userid
+      links
       createdAt
       updatedAt
     }

@@ -4,7 +4,7 @@ input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
 type Profile @model {
-  id: ID!
-  address: String!
-  userid: String
+  username: String! @primaryKey
+  address: String
+  links: AWSJSON
 }
