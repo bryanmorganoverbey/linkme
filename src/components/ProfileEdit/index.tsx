@@ -14,6 +14,7 @@ import {
 import { getProfile } from "../../graphql/queries";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import useEffectAsync from "../../hooks/useEffectAsync";
+import ButtonAppBar from "../Nav";
 
 const ProfileEdit = () => {
   const [profile, setProfile] = React.useState<ValuesD | null>(null);
@@ -57,6 +58,7 @@ const ProfileEdit = () => {
 
   return (
     <>
+      <ButtonAppBar />
       <h1>Edit Your Profile {user?.username}</h1>
       <button type="button" onClick={signOut}>
         Sign out
