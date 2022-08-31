@@ -20,11 +20,14 @@ import ButtonAppBar from "../Nav";
 const ProfileEdit = () => {
   const [profile, setProfile] = React.useState<ValuesD | null>(null);
   const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const [loading, setLoading] = React.useState(true);
   const navigate = useNavigate();
 
   const params = { username: user?.username || "" };
 
   useEffectAsync(async () => {
+    setLoading(true);
     if (user.username && !profile) {
       const profile: any = await API.graphql({
         query: getProfile,
@@ -35,6 +38,7 @@ const ProfileEdit = () => {
       const { data } = profile;
       setProfile(data.getProfile);
     }
+    setLoading(false);
   }, [user, profile]);
 
   const handleSubmit = async (values: ValuesD) => {
@@ -56,6 +60,12 @@ const ProfileEdit = () => {
     username: string;
     snapchat_link: string;
   };
+  if (authStatus === "configuring") return <div>Loading...</div>;
+  if (authStatus !== "authenticated") {
+    navigate({
+      pathname: "/",
+    });
+  }
 
   return (
     <>

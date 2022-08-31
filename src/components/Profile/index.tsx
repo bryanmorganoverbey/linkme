@@ -18,7 +18,7 @@ type ValuesD = {
 const Profile = () => {
   const [searchParams] = useSearchParams();
   const [profile, setProfile] = React.useState<ValuesD | null>(null);
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
+  const { user } = useAuthenticator((context) => [context.user]);
   const username = searchParams.get("username");
   console.log(searchParams);
   const navigate = useNavigate();
@@ -27,30 +27,32 @@ const Profile = () => {
     if (username && !profile) {
       const profile: any = await API.graphql({
         query: getProfile,
-        variables: { username: user.username },
+        variables: { username: username },
       });
       console.log("profile", profile);
 
       const { data } = profile;
       setProfile(data.getProfile);
     }
-  }, [user, profile]);
+  }, [username, profile]);
   if (!username) return <UserNotFoundPage />;
 
   return (
     <>
       <ButtonAppBar />
       <div>Profile Page for user {username}</div>
-      <button
-        type="button"
-        onClick={() =>
-          navigate({
-            pathname: "/profile-edit",
-          })
-        }
-      >
-        Edit Profile
-      </button>
+      {user?.username && (
+        <button
+          type="button"
+          onClick={() =>
+            navigate({
+              pathname: "/profile-edit",
+            })
+          }
+        >
+          Edit Profile
+        </button>
+      )}
 
       <Grid container sx={{ justifyContent: "center" }}>
         <Card>
