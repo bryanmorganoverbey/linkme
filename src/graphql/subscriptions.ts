@@ -7,7 +7,7 @@ export const onCreateProfile = /* GraphQL */ `
     onCreateProfile(filter: $filter) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }
@@ -18,7 +18,7 @@ export const onUpdateProfile = /* GraphQL */ `
     onUpdateProfile(filter: $filter) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }
@@ -29,7 +29,7 @@ export const onDeleteProfile = /* GraphQL */ `
     onDeleteProfile(filter: $filter) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }

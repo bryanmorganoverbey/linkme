@@ -7,6 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import SnapLogo from "../../assets/snapchat.png";
 import {
   createProfile as createProfileMutation,
   deleteProfile as deleteProfileMutation,
@@ -37,6 +38,7 @@ const ProfileEdit = () => {
   }, [user, profile]);
 
   const handleSubmit = async (values: ValuesD) => {
+    console.log(values);
     await API.graphql({
       query: createProfileMutation,
       variables: { input: values },
@@ -51,9 +53,8 @@ const ProfileEdit = () => {
   };
 
   type ValuesD = {
-    address: string;
     username: string;
-    link: string;
+    snapchat_link: string;
   };
 
   return (
@@ -82,12 +83,11 @@ const ProfileEdit = () => {
         justifyContent="center"
         style={{ minHeight: "50vh" }}
       >
-        <Grid item xs={3}>
-          <Card sx={{ p: 5 }}>
+        <Grid item style={{ minWidth: "300px" }}>
+          <Card sx={{ p: 1 }}>
             <Formik
               initialValues={{
-                address: profile?.address || "",
-                link: profile?.link || "",
+                snapchat_link: profile?.snapchat_link || "",
                 username: user?.username || "",
               }}
               onSubmit={handleSubmit}
@@ -95,20 +95,25 @@ const ProfileEdit = () => {
               {({ values }) => (
                 <Form>
                   <>
-                    <Box sx={{ p: 3 }}>
-                      <TextField
-                        name="address"
-                        id="outlined-basic"
-                        label="Address"
-                        variant="outlined"
+                    <Box sx={{ p: 1 }}>
+                      <img
+                        alt="snapchat"
+                        src={SnapLogo}
+                        width="60px"
+                        height="60px"
                       />
-                    </Box>
-                    <Box sx={{ p: 3 }}>
-                      <TextField
-                        name="link"
-                        id="outlined-basic"
-                        label="Link"
-                        variant="outlined"
+                      {"  "}
+                      <Field
+                        render={({ field }: { field: typeof Field }) => (
+                          <TextField
+                            {...field}
+                            style={{ width: "260px" }}
+                            id="outlined-basic"
+                            label="Link to your Snapchat Account"
+                            variant="outlined"
+                          />
+                        )}
+                        name="snapchat_link"
                       />
                     </Box>
                     <Box sx={{ p: 3 }}>

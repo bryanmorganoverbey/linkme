@@ -5,12 +5,12 @@
 export type CreateProfileInput = {
   username: string,
   address?: string | null,
-  link?: string | null,
+  snapchat_link?: string | null,
 };
 
 export type ModelProfileConditionInput = {
   address?: ModelStringInput | null,
-  link?: ModelStringInput | null,
+  snapchat_link?: ModelStringInput | null,
   and?: Array< ModelProfileConditionInput | null > | null,
   or?: Array< ModelProfileConditionInput | null > | null,
   not?: ModelProfileConditionInput | null,
@@ -60,7 +60,7 @@ export type Profile = {
   __typename: "Profile",
   username: string,
   address?: string | null,
-  link?: string | null,
+  snapchat_link?: string | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -68,7 +68,7 @@ export type Profile = {
 export type UpdateProfileInput = {
   username: string,
   address?: string | null,
-  link?: string | null,
+  snapchat_link?: string | null,
 };
 
 export type DeleteProfileInput = {
@@ -78,7 +78,7 @@ export type DeleteProfileInput = {
 export type ModelProfileFilterInput = {
   username?: ModelStringInput | null,
   address?: ModelStringInput | null,
-  link?: ModelStringInput | null,
+  snapchat_link?: ModelStringInput | null,
   and?: Array< ModelProfileFilterInput | null > | null,
   or?: Array< ModelProfileFilterInput | null > | null,
   not?: ModelProfileFilterInput | null,
@@ -99,7 +99,7 @@ export type ModelProfileConnection = {
 export type ModelSubscriptionProfileFilterInput = {
   username?: ModelSubscriptionStringInput | null,
   address?: ModelSubscriptionStringInput | null,
-  link?: ModelSubscriptionStringInput | null,
+  snapchat_link?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionProfileFilterInput | null > | null,
   or?: Array< ModelSubscriptionProfileFilterInput | null > | null,
 };
@@ -129,7 +129,7 @@ export type CreateProfileMutation = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -145,7 +145,7 @@ export type UpdateProfileMutation = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -161,7 +161,7 @@ export type DeleteProfileMutation = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -176,7 +176,7 @@ export type GetProfileQuery = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -197,7 +197,7 @@ export type ListProfilesQuery = {
       __typename: "Profile",
       username: string,
       address?: string | null,
-      link?: string | null,
+      snapchat_link?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -214,7 +214,7 @@ export type OnCreateProfileSubscription = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -229,7 +229,7 @@ export type OnUpdateProfileSubscription = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -244,7 +244,7 @@ export type OnDeleteProfileSubscription = {
     __typename: "Profile",
     username: string,
     address?: string | null,
-    link?: string | null,
+    snapchat_link?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,

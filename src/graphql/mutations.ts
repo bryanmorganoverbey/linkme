@@ -10,7 +10,7 @@ export const createProfile = /* GraphQL */ `
     createProfile(input: $input, condition: $condition) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }
@@ -24,7 +24,7 @@ export const updateProfile = /* GraphQL */ `
     updateProfile(input: $input, condition: $condition) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }
@@ -38,7 +38,7 @@ export const deleteProfile = /* GraphQL */ `
     deleteProfile(input: $input, condition: $condition) {
       username
       address
-      link
+      snapchat_link
       createdAt
       updatedAt
     }
