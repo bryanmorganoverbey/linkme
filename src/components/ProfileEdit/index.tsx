@@ -9,6 +9,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SnapLogo from "../../assets/snapchat.png";
 import InstaLogo from "../../assets/instagram.png";
+import QRCode from "react-qr-code";
+
 import {
   createProfile as createProfileMutation,
   deleteProfile as deleteProfileMutation,
@@ -98,7 +100,7 @@ const ProfileEdit = () => {
         justifyContent="center"
         style={{ minHeight: "50vh" }}
       >
-        <Grid item style={{ minWidth: "300px" }}>
+        <Grid item style={{ minWidth: "300px", padding: "20px" }}>
           <Card sx={{ p: 1 }}>
             <Formik
               initialValues={{
@@ -167,6 +169,18 @@ const ProfileEdit = () => {
               )}
             </Formik>
           </Card>
+        </Grid>
+        <Grid container sx={{ justifyContent: "center" }}>
+          {user?.username ? (
+            <Card>
+              This is your QR code that links to your profile
+              <CardContent>
+                <QRCode
+                  value={`www.snapl.me/profile?username=${user?.username}`}
+                />
+              </CardContent>
+            </Card>
+          ) : null}
         </Grid>
       </Grid>
     </>
