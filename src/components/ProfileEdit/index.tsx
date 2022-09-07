@@ -8,9 +8,11 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SnapLogo from "../../assets/snapchat.png";
+import InstaLogo from "../../assets/instagram.png";
 import {
   createProfile as createProfileMutation,
   deleteProfile as deleteProfileMutation,
+  updateProfile as updateProfileMutation,
 } from "../../graphql/mutations";
 import { getProfile } from "../../graphql/queries";
 import { useAuthenticator } from "@aws-amplify/ui-react";
@@ -44,7 +46,7 @@ const ProfileEdit = () => {
   const handleSubmit = async (values: ValuesD) => {
     console.log(values);
     await API.graphql({
-      query: createProfileMutation,
+      query: profile === null ? createProfileMutation : updateProfileMutation,
       variables: { input: values },
     });
   };
@@ -59,6 +61,7 @@ const ProfileEdit = () => {
   type ValuesD = {
     username: string;
     snapchat_link: string;
+    instagram_link: string;
   };
   if (authStatus === "configuring") return <div>Loading...</div>;
   if (authStatus !== "authenticated") {
@@ -67,7 +70,9 @@ const ProfileEdit = () => {
     });
   }
 
-  return (
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <ButtonAppBar />
       <h1>Edit Your Profile {user?.username}</h1>
@@ -98,6 +103,7 @@ const ProfileEdit = () => {
             <Formik
               initialValues={{
                 snapchat_link: profile?.snapchat_link || "",
+                instagram_link: profile?.instagram_link || "",
                 username: user?.username || "",
               }}
               onSubmit={handleSubmit}
@@ -112,7 +118,7 @@ const ProfileEdit = () => {
                         width="60px"
                         height="60px"
                       />
-                      {"  "}
+
                       <Field
                         render={({ field }: { field: typeof Field }) => (
                           <TextField
@@ -124,6 +130,28 @@ const ProfileEdit = () => {
                           />
                         )}
                         name="snapchat_link"
+                        value={values?.snapchat_link || "not workin"}
+                      />
+                    </Box>
+                    <Box sx={{ p: 1 }}>
+                      <img
+                        alt="instagram"
+                        src={InstaLogo}
+                        width="60px"
+                        height="60px"
+                      />
+                      {"  "}
+                      <Field
+                        render={({ field }: { field: typeof Field }) => (
+                          <TextField
+                            {...field}
+                            style={{ width: "260px" }}
+                            id="outlined-basic"
+                            label="Link to your Instagram Account"
+                            variant="outlined"
+                          />
+                        )}
+                        name="instagram_link"
                       />
                     </Box>
                     <Box sx={{ p: 3 }}>

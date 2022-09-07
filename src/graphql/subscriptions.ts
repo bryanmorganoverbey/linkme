@@ -8,6 +8,9 @@ export const onCreateProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }
@@ -19,6 +22,9 @@ export const onUpdateProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }
@@ -30,6 +36,9 @@ export const onDeleteProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }

@@ -11,6 +11,9 @@ export const createProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }
@@ -25,6 +28,9 @@ export const updateProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }
@@ -39,6 +45,9 @@ export const deleteProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }

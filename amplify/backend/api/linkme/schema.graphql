@@ -7,4 +7,7 @@ type Profile @model {
   username: String! @primaryKey
   address: String
   snapchat_link: String
+  instagram_link: String
+  facebook_link: String
+  linkedin_link: String
 }
