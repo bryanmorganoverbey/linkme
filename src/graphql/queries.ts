@@ -8,6 +8,9 @@ export const getProfile = /* GraphQL */ `
       username
       address
       snapchat_link
+      instagram_link
+      facebook_link
+      linkedin_link
       createdAt
       updatedAt
     }
@@ -32,6 +35,9 @@ export const listProfiles = /* GraphQL */ `
         username
         address
         snapchat_link
+        instagram_link
+        facebook_link
+        linkedin_link
         createdAt
         updatedAt
       }
