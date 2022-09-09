@@ -56,7 +56,7 @@ const Profile = () => {
         </button>
       )}
 
-      <Grid container sx={{ justifyContent: "center" }}>
+      <Grid container sx={{ justifyContent: "center", p: 3 }}>
         <Card>
           <CardContent>
             {profile?.snapchat_link || profile?.snapchat_link ? (
