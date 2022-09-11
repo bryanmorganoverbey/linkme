@@ -22,7 +22,6 @@ const Profile = () => {
   const [profile, setProfile] = React.useState<ValuesD | null>(null);
   const { user } = useAuthenticator((context) => [context.user]);
   const username = searchParams.get("username");
-  console.log(searchParams);
   const navigate = useNavigate();
 
   useEffectAsync(async () => {
@@ -31,7 +30,6 @@ const Profile = () => {
         query: getProfile,
         variables: { username: username },
       });
-      console.log("profile", profile);
 
       const { data } = profile;
       setProfile(data.getProfile);

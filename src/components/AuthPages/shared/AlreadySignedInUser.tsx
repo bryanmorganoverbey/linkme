@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate, createSearchParams } from "react-router-dom";
-import ButtonAppBar from "../Nav";
+import ButtonAppBar from "../../Nav";
+import { Typography } from "@mui/material";
 
 const AlreadySignedInUser = () => {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
@@ -11,7 +12,9 @@ const AlreadySignedInUser = () => {
   return (
     <>
       <ButtonAppBar />
-      <div>You are signed in as {user?.username}.</div>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        You are signed in as {user?.username}.
+      </Typography>
       <button
         type="button"
         onClick={() =>
